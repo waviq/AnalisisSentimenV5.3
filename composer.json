@@ -9,7 +9,8 @@
         "laravel/framework": "5.3.*",
         "thujohn/twitter": "^2.2",
         "barryvdh/laravel-ide-helper": "^2.2",
-        "jenssegers/mongodb": "v3.1.0-alpha"
+        "jenssegers/mongodb": "v3.1.0-alpha",
+        "sastrawi/sastrawi": "1"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

@@ -84,6 +84,9 @@ return [
             'host'     => env('DB_HOST', 'localhost'),
             'port'     => env('DB_PORT', 27017),
             'database' => env('DB_DATABASE'),
+            'options' => array(
+                'db' => 'admin' // sets the authentication database required by mongo 3
+            )
 
         ],
 

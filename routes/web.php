@@ -11,6 +11,21 @@
 |
 */
 
+
 Route::get('/', function () {
-    return view('welcome');
+    return Twitter::getFollowers(['screen_name' => 'AgusYudhoyono', 'count' => 20, 'format' => 'json']);
+});
+
+Route::get('stemmer', function(){
+
+    require_once __DIR__ . '/../vendor/autoload.php';
+
+    $stemmerFactory = new \Sastrawi\Stemmer\StemmerFactory();
+    $stemmer  = $stemmerFactory->createStemmer();
+
+// stem
+    $sentence = 'Perekonomian Indonesia sedang dalam pertumbuhan yang membanggakan';
+    $output   = $stemmer->stem($sentence);
+
+    return $output;
 });

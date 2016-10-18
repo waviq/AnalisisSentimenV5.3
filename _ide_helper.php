@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.11 on 2016-09-29.
+ * Generated for Laravel 5.3.19 on 2016-10-18.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2673,6 +2673,57 @@ namespace {
     }
 
 
+    class Crypt extends \Illuminate\Support\Facades\Crypt{
+        
+        /**
+         * Determine if the given key and cipher combination is valid.
+         *
+         * @param string $key
+         * @param string $cipher
+         * @return bool 
+         * @static 
+         */
+        public static function supported($key, $cipher){
+            return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
+        }
+        
+        /**
+         * Encrypt the given value.
+         *
+         * @param string $value
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\EncryptException
+         * @static 
+         */
+        public static function encrypt($value){
+            return \Illuminate\Encryption\Encrypter::encrypt($value);
+        }
+        
+        /**
+         * Decrypt the given value.
+         *
+         * @param string $payload
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\DecryptException
+         * @static 
+         */
+        public static function decrypt($payload){
+            return \Illuminate\Encryption\Encrypter::decrypt($payload);
+        }
+        
+        /**
+         * Get the encryption key.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getKey(){
+            return \Illuminate\Encryption\Encrypter::getKey();
+        }
+        
+    }
+
+
     class DB extends \Illuminate\Support\Facades\DB{
         
         /**
@@ -3877,7 +3928,7 @@ namespace {
         /**
          * Add a basic where clause to the query.
          *
-         * @param string $column
+         * @param string|\Closure $column
          * @param string $operator
          * @param mixed $value
          * @param string $boolean
@@ -3891,7 +3942,7 @@ namespace {
         /**
          * Add an "or where" clause to the query.
          *
-         * @param string $column
+         * @param string|\Closure $column
          * @param string $operator
          * @param mixed $value
          * @return \Illuminate\Database\Eloquent\Builder|static 
@@ -6761,8 +6812,8 @@ namespace {
          * @return void 
          * @static 
          */
-        public static function sendNow($notifiables, $notification){
-            \Illuminate\Notifications\ChannelManager::sendNow($notifiables, $notification);
+        public static function sendNow($notifiables, $notification, $channels = null){
+            \Illuminate\Notifications\ChannelManager::sendNow($notifiables, $notification, $channels);
         }
         
         /**
@@ -13498,6 +13549,16 @@ namespace {
         public static function getSuggestedsMembers($slug, $parameters = array()){
             return \Thujohn\Twitter\Twitter::getSuggestedsMembers($slug, $parameters);
         }
+        
+    }
+
+
+    class Moloquent extends \Jenssegers\Mongodb\Eloquent\Model{
+        
+    }
+
+
+    class Sastrawi extends \Sastrawi\Stemmer\StemmerFactory{
         
     }
 
