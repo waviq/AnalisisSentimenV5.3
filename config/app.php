@@ -166,7 +166,8 @@ return [
         Thujohn\Twitter\TwitterServiceProvider::class,
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Jenssegers\Mongodb\MongodbServiceProvider::class,
-        Sastrawi\SastrawiServiceProvider::class,
+        App\Providers\HelperServiceProvider::class,
+
 
         /*
          * Package Service Providers...
@@ -232,7 +233,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Twitter' => Thujohn\Twitter\Facades\Twitter::class,
         'Moloquent'       => Jenssegers\Mongodb\Eloquent\Model::class,
-        'Sastrawi'  => Sastrawi\Stemmer\StemmerFactory::class,
 
     ],
 

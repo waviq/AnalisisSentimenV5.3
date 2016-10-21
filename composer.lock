@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "eaf086618056efb4ba58f10eb2d69eb0",
-    "content-hash": "95655aa57cbbd08e45ebef8b8edcca42",
+    "hash": "dc94dd67e7614b4bff666c363391dc43",
+    "content-hash": "a0ec32ff3885f1ee2ae3b0dcd66ab0e3",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -612,20 +612,20 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.29",
+            "version": "1.0.32",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "b732cc946c48cf102ddffd41ffcd54901a28ccdb"
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/b732cc946c48cf102ddffd41ffcd54901a28ccdb",
-                "reference": "b732cc946c48cf102ddffd41ffcd54901a28ccdb",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
+                "reference": "1b5c4a0031697f46e779a9d1b309c2e1b24daeab",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6.0"
+                "php": ">=5.5.9"
             },
             "conflict": {
                 "league/flysystem-sftp": "<1.0.6"
@@ -691,7 +691,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2016-10-17 23:14:19"
+            "time": "2016-10-19 20:38:46"
         },
         {
             "name": "mongodb/mongodb",
@@ -1217,28 +1217,29 @@
         },
         {
             "name": "sastrawi/sastrawi",
-            "version": "v1.0.0",
+            "version": "v1.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sastrawi/sastrawi.git",
-                "reference": "fd3cd29e46954b2c8f24dc95f029ce233871d2ef"
+                "reference": "519a69a60f0a05f21feb60aa6ca9538aaf87f3ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sastrawi/sastrawi/zipball/fd3cd29e46954b2c8f24dc95f029ce233871d2ef",
-                "reference": "fd3cd29e46954b2c8f24dc95f029ce233871d2ef",
+                "url": "https://api.github.com/repos/sastrawi/sastrawi/zipball/519a69a60f0a05f21feb60aa6ca9538aaf87f3ef",
+                "reference": "519a69a60f0a05f21feb60aa6ca9538aaf87f3ef",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3"
             },
             "require-dev": {
-                "squizlabs/php_codesniffer": "1.4.*"
+                "phpunit/phpunit": "4.8.7",
+                "squizlabs/php_codesniffer": "~1.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.1.x-dev"
                 }
             },
             "autoload": {
@@ -1254,7 +1255,7 @@
                 {
                     "name": "Andy Librian",
                     "email": "andylibrian@gmail.com",
-                    "homepage": "http://andylibrian.pro",
+                    "homepage": "http://andylibrian.com",
                     "role": "Lead Developer"
                 }
             ],
@@ -1268,7 +1269,7 @@
                 "root word",
                 "stem"
             ],
-            "time": "2014-07-20 05:15:07"
+            "time": "2016-02-07 04:06:02"
         },
         {
             "name": "swiftmailer/swiftmailer",

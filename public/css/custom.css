@@ -1,0 +1,52 @@
+.contact-box.center-version {
+    border: 1px solid #e7eaec;
+    padding: 0;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #fff;
+    font-size: 13px;
+    color: #676a6c;
+    overflow-x: hidden;
+}
+
+.contact-box {
+    background-color: #ffffff;
+    border: 1px solid #e7eaec;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.contact-box.center-version > a {
+    display: block;
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+.contact-box > a {
+    color: inherit;
+}
+
+.contact-box.center-version > a img {
+    width: 160px;
+    height: 160px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.m-b-xs {
+    margin-bottom: 5px;
+}
+
+.font-bold {
+    font-weight: 600;
+}
+
+.m-t-md {
+    margin-top: 20px;
+}
+
+.contact-box .contact-box-footer {
+    text-align: center;
+    background-color: #ffffff;
+    border-top: 1px solid #e7eaec;
+    padding: 15px 20px;
+}
