@@ -1,5 +1,4 @@
 @extends('layouts.layout')
-
 @section('procces')
     @include('layouts.proccesPreprocessing')
 @endsection
@@ -21,14 +20,13 @@
                                 </thead>
                                 <tbody>
 
-                                @foreach($ahokLower as $key => $ahoks)
+                                @foreach($ahok as $key => $ahoks)
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{$ahoks->From_User}}</td>
                                         <td>{{$ahoks->text}}</td>
                                     </tr>
                                 @endforeach
-
                                 </tbody>
                             </table>
 

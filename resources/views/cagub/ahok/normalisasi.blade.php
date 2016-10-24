@@ -1,5 +1,7 @@
 @extends('layouts.layout')
-
+@section('procces')
+    @include('layouts.proccesPreprocessing')
+@endsection
 @section('content')
     <div class="content">
         <div class="container-fluid">
@@ -22,12 +24,7 @@
                                     <tr>
                                         <td>{{$key+1}}</td>
                                         <td>{{$ahoks->From_User}}</td>
-                                        @if(empty(normalisasi($ahoks->Text)))
-                                            <td>null</td>
-                                        @else
-                                            <td>{{normalisasi($ahoks->Text)}}</td>
-                                        @endif
-
+                                        <td>{{$ahoks->text}}</td>
                                     </tr>
                                 @endforeach
 

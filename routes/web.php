@@ -21,6 +21,10 @@ Route::get('anis','AnisController@index');
 Route::get('preprocessing','HomeController@preprocessing');
 Route::get('preprocessing/ahok/data', 'AhokController@data');
 Route::get('preprocessing/ahok/casefolding', 'AhokController@caseFolding');
+Route::get('preprocessing/ahok/normalisasi', 'AhokController@normalisasi');
+Route::get('preprocessing/ahok/stopword', 'AhokController@stopword');
+Route::get('preprocessing/ahok/stemming', 'AhokController@stemming');
+
 
 Route::get('/twitter', function () {
     return Twitter::getFollowers(['screen_name' => 'AgusYudhoyono', 'count' => 20, 'format' => 'json']);

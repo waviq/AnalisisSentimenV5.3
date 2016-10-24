@@ -1,5 +1,7 @@
 @extends('layouts.layout')
-
+@section('procces')
+    @include('layouts.proccesPreprocessing')
+@endsection
 @section('content')
     <div class="content">
         <div class="container-fluid">
