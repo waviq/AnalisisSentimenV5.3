@@ -1,3 +1,10 @@
+.label{
+    display: inline-block;
+}
+.vq{
+    color: white;
+    font-weight: 700;
+}
 .contact-box.center-version {
     border: 1px solid #e7eaec;
     padding: 0;

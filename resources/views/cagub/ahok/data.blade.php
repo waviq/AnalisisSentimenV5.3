@@ -26,13 +26,21 @@
                                         <td>{{$ahoks->From_User}}</td>
                                         <td>{{$ahoks->Text}}</td>
                                     </tr>
+
                                 @endforeach
 
                                 </tbody>
                             </table>
 
+                            <div class="text-center">
+                                <ul class="pagination ">
+                                    {{$ahok->render()}}
+                                </ul>
+                            </div>
                         </div>
+
                     </div>
+
                 </div>
             </div>
         </div>

@@ -31,6 +31,11 @@
 
                                 </tbody>
                             </table>
+                            <div class="text-center">
+                                <ul class="pagination ">
+                                    {{$ahokLower->render()}}
+                                </ul>
+                            </div>
 
                         </div>
                     </div>

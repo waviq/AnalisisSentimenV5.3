@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.3.19 on 2016-10-19.
+ * Generated for Laravel 5.3.22 on 2016-11-03.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2673,6 +2673,57 @@ namespace {
     }
 
 
+    class Crypt extends \Illuminate\Support\Facades\Crypt{
+        
+        /**
+         * Determine if the given key and cipher combination is valid.
+         *
+         * @param string $key
+         * @param string $cipher
+         * @return bool 
+         * @static 
+         */
+        public static function supported($key, $cipher){
+            return \Illuminate\Encryption\Encrypter::supported($key, $cipher);
+        }
+        
+        /**
+         * Encrypt the given value.
+         *
+         * @param string $value
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\EncryptException
+         * @static 
+         */
+        public static function encrypt($value){
+            return \Illuminate\Encryption\Encrypter::encrypt($value);
+        }
+        
+        /**
+         * Decrypt the given value.
+         *
+         * @param string $payload
+         * @return string 
+         * @throws \Illuminate\Contracts\Encryption\DecryptException
+         * @static 
+         */
+        public static function decrypt($payload){
+            return \Illuminate\Encryption\Encrypter::decrypt($payload);
+        }
+        
+        /**
+         * Get the encryption key.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getKey(){
+            return \Illuminate\Encryption\Encrypter::getKey();
+        }
+        
+    }
+
+
     class DB extends \Illuminate\Support\Facades\DB{
         
         /**
@@ -2783,87 +2834,25 @@ namespace {
         }
         
         /**
-         * Begin a fluent query against a database collection.
-         *
-         * @param string $collection
-         * @return \Jenssegers\Mongodb\Query\Builder 
-         * @static 
-         */
-        public static function collection($collection){
-            return \Jenssegers\Mongodb\Connection::collection($collection);
-        }
-        
-        /**
-         * Begin a fluent query against a database collection.
-         *
-         * @param string $table
-         * @return \Jenssegers\Mongodb\Query\Builder 
-         * @static 
-         */
-        public static function table($table){
-            return \Jenssegers\Mongodb\Connection::table($table);
-        }
-        
-        /**
-         * Get a MongoDB collection.
-         *
-         * @param string $name
-         * @return \Jenssegers\Mongodb\Collection 
-         * @static 
-         */
-        public static function getCollection($name){
-            return \Jenssegers\Mongodb\Connection::getCollection($name);
-        }
-        
-        /**
          * Get a schema builder instance for the connection.
          *
-         * @return \Jenssegers\Mongodb\Schema\Builder 
+         * @return \Illuminate\Database\Schema\MySqlBuilder 
          * @static 
          */
         public static function getSchemaBuilder(){
-            return \Jenssegers\Mongodb\Connection::getSchemaBuilder();
+            return \Illuminate\Database\MySqlConnection::getSchemaBuilder();
         }
         
         /**
-         * Get the MongoDB database object.
+         * Bind values to their parameters in the given statement.
          *
-         * @return \MongoDB\Database 
+         * @param \PDOStatement $statement
+         * @param array $bindings
+         * @return void 
          * @static 
          */
-        public static function getMongoDB(){
-            return \Jenssegers\Mongodb\Connection::getMongoDB();
-        }
-        
-        /**
-         * return MongoDB object.
-         *
-         * @return \MongoDB\Client 
-         * @static 
-         */
-        public static function getMongoClient(){
-            return \Jenssegers\Mongodb\Connection::getMongoClient();
-        }
-        
-        /**
-         * Get the elapsed time since a given starting point.
-         *
-         * @param int $start
-         * @return float 
-         * @static 
-         */
-        public static function getElapsedTime($start){
-            return \Jenssegers\Mongodb\Connection::getElapsedTime($start);
-        }
-        
-        /**
-         * Get the PDO driver name.
-         *
-         * @return string 
-         * @static 
-         */
-        public static function getDriverName(){
-            return \Jenssegers\Mongodb\Connection::getDriverName();
+        public static function bindValues($statement, $bindings){
+            \Illuminate\Database\MySqlConnection::bindValues($statement, $bindings);
         }
         
         /**
@@ -2874,7 +2863,7 @@ namespace {
          */
         public static function useDefaultQueryGrammar(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::useDefaultQueryGrammar();
+            \Illuminate\Database\MySqlConnection::useDefaultQueryGrammar();
         }
         
         /**
@@ -2885,7 +2874,7 @@ namespace {
          */
         public static function useDefaultSchemaGrammar(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::useDefaultSchemaGrammar();
+            \Illuminate\Database\MySqlConnection::useDefaultSchemaGrammar();
         }
         
         /**
@@ -2896,7 +2885,19 @@ namespace {
          */
         public static function useDefaultPostProcessor(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::useDefaultPostProcessor();
+            \Illuminate\Database\MySqlConnection::useDefaultPostProcessor();
+        }
+        
+        /**
+         * Begin a fluent query against a database table.
+         *
+         * @param string $table
+         * @return \Illuminate\Database\Query\Builder 
+         * @static 
+         */
+        public static function table($table){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\MySqlConnection::table($table);
         }
         
         /**
@@ -2907,7 +2908,7 @@ namespace {
          */
         public static function query(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::query();
+            return \Illuminate\Database\MySqlConnection::query();
         }
         
         /**
@@ -2919,7 +2920,7 @@ namespace {
          */
         public static function raw($value){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::raw($value);
+            return \Illuminate\Database\MySqlConnection::raw($value);
         }
         
         /**
@@ -2932,7 +2933,7 @@ namespace {
          */
         public static function selectOne($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::selectOne($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectOne($query, $bindings);
         }
         
         /**
@@ -2945,7 +2946,7 @@ namespace {
          */
         public static function selectFromWriteConnection($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::selectFromWriteConnection($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::selectFromWriteConnection($query, $bindings);
         }
         
         /**
@@ -2959,7 +2960,7 @@ namespace {
          */
         public static function select($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::select($query, $bindings, $useReadPdo);
+            return \Illuminate\Database\MySqlConnection::select($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -2969,20 +2970,7 @@ namespace {
          */
         public static function cursor($query, $bindings = array(), $useReadPdo = true){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::cursor($query, $bindings, $useReadPdo);
-        }
-        
-        /**
-         * Bind values to their parameters in the given statement.
-         *
-         * @param \PDOStatement $statement
-         * @param array $bindings
-         * @return void 
-         * @static 
-         */
-        public static function bindValues($statement, $bindings){
-            //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::bindValues($statement, $bindings);
+            return \Illuminate\Database\MySqlConnection::cursor($query, $bindings, $useReadPdo);
         }
         
         /**
@@ -2995,7 +2983,7 @@ namespace {
          */
         public static function insert($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::insert($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::insert($query, $bindings);
         }
         
         /**
@@ -3008,7 +2996,7 @@ namespace {
          */
         public static function update($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::update($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::update($query, $bindings);
         }
         
         /**
@@ -3021,7 +3009,7 @@ namespace {
          */
         public static function delete($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::delete($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::delete($query, $bindings);
         }
         
         /**
@@ -3034,7 +3022,7 @@ namespace {
          */
         public static function statement($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::statement($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::statement($query, $bindings);
         }
         
         /**
@@ -3047,7 +3035,7 @@ namespace {
          */
         public static function affectingStatement($query, $bindings = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::affectingStatement($query, $bindings);
+            return \Illuminate\Database\MySqlConnection::affectingStatement($query, $bindings);
         }
         
         /**
@@ -3059,7 +3047,7 @@ namespace {
          */
         public static function unprepared($query){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::unprepared($query);
+            return \Illuminate\Database\MySqlConnection::unprepared($query);
         }
         
         /**
@@ -3071,7 +3059,7 @@ namespace {
          */
         public static function prepareBindings($bindings){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::prepareBindings($bindings);
+            return \Illuminate\Database\MySqlConnection::prepareBindings($bindings);
         }
         
         /**
@@ -3085,7 +3073,7 @@ namespace {
          */
         public static function transaction($callback, $attempts = 1){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::transaction($callback, $attempts);
+            return \Illuminate\Database\MySqlConnection::transaction($callback, $attempts);
         }
         
         /**
@@ -3097,7 +3085,7 @@ namespace {
          */
         public static function beginTransaction(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::beginTransaction();
+            \Illuminate\Database\MySqlConnection::beginTransaction();
         }
         
         /**
@@ -3108,7 +3096,7 @@ namespace {
          */
         public static function commit(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::commit();
+            \Illuminate\Database\MySqlConnection::commit();
         }
         
         /**
@@ -3119,7 +3107,7 @@ namespace {
          */
         public static function rollBack(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::rollBack();
+            \Illuminate\Database\MySqlConnection::rollBack();
         }
         
         /**
@@ -3130,7 +3118,7 @@ namespace {
          */
         public static function transactionLevel(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::transactionLevel();
+            return \Illuminate\Database\MySqlConnection::transactionLevel();
         }
         
         /**
@@ -3142,7 +3130,7 @@ namespace {
          */
         public static function pretend($callback){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::pretend($callback);
+            return \Illuminate\Database\MySqlConnection::pretend($callback);
         }
         
         /**
@@ -3156,7 +3144,7 @@ namespace {
          */
         public static function logQuery($query, $bindings, $time = null){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::logQuery($query, $bindings, $time);
+            \Illuminate\Database\MySqlConnection::logQuery($query, $bindings, $time);
         }
         
         /**
@@ -3168,7 +3156,7 @@ namespace {
          */
         public static function listen($callback){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::listen($callback);
+            \Illuminate\Database\MySqlConnection::listen($callback);
         }
         
         /**
@@ -3179,7 +3167,7 @@ namespace {
          */
         public static function isDoctrineAvailable(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::isDoctrineAvailable();
+            return \Illuminate\Database\MySqlConnection::isDoctrineAvailable();
         }
         
         /**
@@ -3192,7 +3180,7 @@ namespace {
          */
         public static function getDoctrineColumn($table, $column){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDoctrineColumn($table, $column);
+            return \Illuminate\Database\MySqlConnection::getDoctrineColumn($table, $column);
         }
         
         /**
@@ -3203,7 +3191,7 @@ namespace {
          */
         public static function getDoctrineSchemaManager(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDoctrineSchemaManager();
+            return \Illuminate\Database\MySqlConnection::getDoctrineSchemaManager();
         }
         
         /**
@@ -3214,7 +3202,7 @@ namespace {
          */
         public static function getDoctrineConnection(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDoctrineConnection();
+            return \Illuminate\Database\MySqlConnection::getDoctrineConnection();
         }
         
         /**
@@ -3225,7 +3213,7 @@ namespace {
          */
         public static function getPdo(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getPdo();
+            return \Illuminate\Database\MySqlConnection::getPdo();
         }
         
         /**
@@ -3236,7 +3224,7 @@ namespace {
          */
         public static function getReadPdo(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getReadPdo();
+            return \Illuminate\Database\MySqlConnection::getReadPdo();
         }
         
         /**
@@ -3244,12 +3232,11 @@ namespace {
          *
          * @param \PDO|null $pdo
          * @return $this 
-         * @throws \RuntimeException
          * @static 
          */
         public static function setPdo($pdo){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setPdo($pdo);
+            return \Illuminate\Database\MySqlConnection::setPdo($pdo);
         }
         
         /**
@@ -3261,7 +3248,7 @@ namespace {
          */
         public static function setReadPdo($pdo){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setReadPdo($pdo);
+            return \Illuminate\Database\MySqlConnection::setReadPdo($pdo);
         }
         
         /**
@@ -3273,7 +3260,7 @@ namespace {
          */
         public static function setReconnector($reconnector){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setReconnector($reconnector);
+            return \Illuminate\Database\MySqlConnection::setReconnector($reconnector);
         }
         
         /**
@@ -3284,7 +3271,7 @@ namespace {
          */
         public static function getName(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getName();
+            return \Illuminate\Database\MySqlConnection::getName();
         }
         
         /**
@@ -3296,7 +3283,18 @@ namespace {
          */
         public static function getConfig($option){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getConfig($option);
+            return \Illuminate\Database\MySqlConnection::getConfig($option);
+        }
+        
+        /**
+         * Get the PDO driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDriverName(){
+            //Method inherited from \Illuminate\Database\Connection            
+            return \Illuminate\Database\MySqlConnection::getDriverName();
         }
         
         /**
@@ -3307,7 +3305,7 @@ namespace {
          */
         public static function getQueryGrammar(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getQueryGrammar();
+            return \Illuminate\Database\MySqlConnection::getQueryGrammar();
         }
         
         /**
@@ -3319,7 +3317,7 @@ namespace {
          */
         public static function setQueryGrammar($grammar){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::setQueryGrammar($grammar);
+            \Illuminate\Database\MySqlConnection::setQueryGrammar($grammar);
         }
         
         /**
@@ -3330,7 +3328,7 @@ namespace {
          */
         public static function getSchemaGrammar(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getSchemaGrammar();
+            return \Illuminate\Database\MySqlConnection::getSchemaGrammar();
         }
         
         /**
@@ -3342,7 +3340,7 @@ namespace {
          */
         public static function setSchemaGrammar($grammar){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::setSchemaGrammar($grammar);
+            \Illuminate\Database\MySqlConnection::setSchemaGrammar($grammar);
         }
         
         /**
@@ -3353,7 +3351,7 @@ namespace {
          */
         public static function getPostProcessor(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getPostProcessor();
+            return \Illuminate\Database\MySqlConnection::getPostProcessor();
         }
         
         /**
@@ -3365,7 +3363,7 @@ namespace {
          */
         public static function setPostProcessor($processor){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::setPostProcessor($processor);
+            \Illuminate\Database\MySqlConnection::setPostProcessor($processor);
         }
         
         /**
@@ -3376,7 +3374,7 @@ namespace {
          */
         public static function getEventDispatcher(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getEventDispatcher();
+            return \Illuminate\Database\MySqlConnection::getEventDispatcher();
         }
         
         /**
@@ -3388,7 +3386,7 @@ namespace {
          */
         public static function setEventDispatcher($events){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::setEventDispatcher($events);
+            \Illuminate\Database\MySqlConnection::setEventDispatcher($events);
         }
         
         /**
@@ -3399,7 +3397,7 @@ namespace {
          */
         public static function pretending(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::pretending();
+            return \Illuminate\Database\MySqlConnection::pretending();
         }
         
         /**
@@ -3410,7 +3408,7 @@ namespace {
          */
         public static function getFetchMode(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getFetchMode();
+            return \Illuminate\Database\MySqlConnection::getFetchMode();
         }
         
         /**
@@ -3421,7 +3419,7 @@ namespace {
          */
         public static function getFetchArgument(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getFetchArgument();
+            return \Illuminate\Database\MySqlConnection::getFetchArgument();
         }
         
         /**
@@ -3432,7 +3430,7 @@ namespace {
          */
         public static function getFetchConstructorArgument(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getFetchConstructorArgument();
+            return \Illuminate\Database\MySqlConnection::getFetchConstructorArgument();
         }
         
         /**
@@ -3446,7 +3444,7 @@ namespace {
          */
         public static function setFetchMode($fetchMode, $fetchArgument = null, $fetchConstructorArgument = array()){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setFetchMode($fetchMode, $fetchArgument, $fetchConstructorArgument);
+            return \Illuminate\Database\MySqlConnection::setFetchMode($fetchMode, $fetchArgument, $fetchConstructorArgument);
         }
         
         /**
@@ -3457,7 +3455,7 @@ namespace {
          */
         public static function getQueryLog(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getQueryLog();
+            return \Illuminate\Database\MySqlConnection::getQueryLog();
         }
         
         /**
@@ -3468,7 +3466,7 @@ namespace {
          */
         public static function flushQueryLog(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::flushQueryLog();
+            \Illuminate\Database\MySqlConnection::flushQueryLog();
         }
         
         /**
@@ -3479,7 +3477,7 @@ namespace {
          */
         public static function enableQueryLog(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::enableQueryLog();
+            \Illuminate\Database\MySqlConnection::enableQueryLog();
         }
         
         /**
@@ -3490,7 +3488,7 @@ namespace {
          */
         public static function disableQueryLog(){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::disableQueryLog();
+            \Illuminate\Database\MySqlConnection::disableQueryLog();
         }
         
         /**
@@ -3501,7 +3499,7 @@ namespace {
          */
         public static function logging(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::logging();
+            return \Illuminate\Database\MySqlConnection::logging();
         }
         
         /**
@@ -3512,7 +3510,7 @@ namespace {
          */
         public static function getDatabaseName(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getDatabaseName();
+            return \Illuminate\Database\MySqlConnection::getDatabaseName();
         }
         
         /**
@@ -3524,7 +3522,7 @@ namespace {
          */
         public static function setDatabaseName($database){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::setDatabaseName($database);
+            return \Illuminate\Database\MySqlConnection::setDatabaseName($database);
         }
         
         /**
@@ -3535,7 +3533,7 @@ namespace {
          */
         public static function getTablePrefix(){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::getTablePrefix();
+            return \Illuminate\Database\MySqlConnection::getTablePrefix();
         }
         
         /**
@@ -3547,7 +3545,7 @@ namespace {
          */
         public static function setTablePrefix($prefix){
             //Method inherited from \Illuminate\Database\Connection            
-            \Jenssegers\Mongodb\Connection::setTablePrefix($prefix);
+            \Illuminate\Database\MySqlConnection::setTablePrefix($prefix);
         }
         
         /**
@@ -3559,7 +3557,7 @@ namespace {
          */
         public static function withTablePrefix($grammar){
             //Method inherited from \Illuminate\Database\Connection            
-            return \Jenssegers\Mongodb\Connection::withTablePrefix($grammar);
+            return \Illuminate\Database\MySqlConnection::withTablePrefix($grammar);
         }
         
     }
@@ -8827,6 +8825,17 @@ namespace {
         }
         
         /**
+         * Checks whether the method is cacheable or not.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function isMethodCacheable(){
+            //Method inherited from \Symfony\Component\HttpFoundation\Request            
+            return \Illuminate\Http\Request::isMethodCacheable();
+        }
+        
+        /**
          * Returns the request body content.
          *
          * @param bool $asResource If true, a resource will be returned
@@ -9771,6 +9780,28 @@ namespace {
     class Schema extends \Illuminate\Support\Facades\Schema{
         
         /**
+         * Determine if the given table exists.
+         *
+         * @param string $table
+         * @return bool 
+         * @static 
+         */
+        public static function hasTable($table){
+            return \Illuminate\Database\Schema\MySqlBuilder::hasTable($table);
+        }
+        
+        /**
+         * Get the column listing for a given table.
+         *
+         * @param string $table
+         * @return array 
+         * @static 
+         */
+        public static function getColumnListing($table){
+            return \Illuminate\Database\Schema\MySqlBuilder::getColumnListing($table);
+        }
+        
+        /**
          * Determine if the given table has a given column.
          *
          * @param string $table
@@ -9779,7 +9810,8 @@ namespace {
          * @static 
          */
         public static function hasColumn($table, $column){
-            return \Jenssegers\Mongodb\Schema\Builder::hasColumn($table, $column);
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Illuminate\Database\Schema\MySqlBuilder::hasColumn($table, $column);
         }
         
         /**
@@ -9791,76 +9823,8 @@ namespace {
          * @static 
          */
         public static function hasColumns($table, $columns){
-            return \Jenssegers\Mongodb\Schema\Builder::hasColumns($table, $columns);
-        }
-        
-        /**
-         * Determine if the given collection exists.
-         *
-         * @param string $collection
-         * @return bool 
-         * @static 
-         */
-        public static function hasCollection($collection){
-            return \Jenssegers\Mongodb\Schema\Builder::hasCollection($collection);
-        }
-        
-        /**
-         * Determine if the given collection exists.
-         *
-         * @param string $collection
-         * @return bool 
-         * @static 
-         */
-        public static function hasTable($collection){
-            return \Jenssegers\Mongodb\Schema\Builder::hasTable($collection);
-        }
-        
-        /**
-         * Modify a collection on the schema.
-         *
-         * @param string $collection
-         * @param \Closure $callback
-         * @return bool 
-         * @static 
-         */
-        public static function collection($collection, $callback){
-            return \Jenssegers\Mongodb\Schema\Builder::collection($collection, $callback);
-        }
-        
-        /**
-         * Modify a collection on the schema.
-         *
-         * @param string $collection
-         * @param \Closure $callback
-         * @return bool 
-         * @static 
-         */
-        public static function table($collection, $callback){
-            return \Jenssegers\Mongodb\Schema\Builder::table($collection, $callback);
-        }
-        
-        /**
-         * Create a new collection on the schema.
-         *
-         * @param string $collection
-         * @param \Closure $callback
-         * @return bool 
-         * @static 
-         */
-        public static function create($collection, $callback = null){
-            return \Jenssegers\Mongodb\Schema\Builder::create($collection, $callback);
-        }
-        
-        /**
-         * Drop a collection from the schema.
-         *
-         * @param string $collection
-         * @return bool 
-         * @static 
-         */
-        public static function drop($collection){
-            return \Jenssegers\Mongodb\Schema\Builder::drop($collection);
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            return \Illuminate\Database\Schema\MySqlBuilder::hasColumns($table, $columns);
         }
         
         /**
@@ -9873,31 +9837,57 @@ namespace {
          */
         public static function getColumnType($table, $column){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::getColumnType($table, $column);
+            return \Illuminate\Database\Schema\MySqlBuilder::getColumnType($table, $column);
         }
         
         /**
-         * Get the column listing for a given table.
+         * Modify a table on the schema.
          *
          * @param string $table
-         * @return array 
+         * @param \Closure $callback
+         * @return \Illuminate\Database\Schema\Blueprint 
          * @static 
          */
-        public static function getColumnListing($table){
+        public static function table($table, $callback){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::getColumnListing($table);
+            return \Illuminate\Database\Schema\MySqlBuilder::table($table, $callback);
+        }
+        
+        /**
+         * Create a new table on the schema.
+         *
+         * @param string $table
+         * @param \Closure $callback
+         * @return void 
+         * @static 
+         */
+        public static function create($table, $callback){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Illuminate\Database\Schema\MySqlBuilder::create($table, $callback);
+        }
+        
+        /**
+         * Drop a table from the schema.
+         *
+         * @param string $table
+         * @return void 
+         * @static 
+         */
+        public static function drop($table){
+            //Method inherited from \Illuminate\Database\Schema\Builder            
+            \Illuminate\Database\Schema\MySqlBuilder::drop($table);
         }
         
         /**
          * Drop a table from the schema if it exists.
          *
          * @param string $table
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function dropIfExists($table){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::dropIfExists($table);
+            \Illuminate\Database\Schema\MySqlBuilder::dropIfExists($table);
         }
         
         /**
@@ -9905,12 +9895,12 @@ namespace {
          *
          * @param string $from
          * @param string $to
-         * @return \Illuminate\Database\Schema\Blueprint 
+         * @return void 
          * @static 
          */
         public static function rename($from, $to){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::rename($from, $to);
+            \Illuminate\Database\Schema\MySqlBuilder::rename($from, $to);
         }
         
         /**
@@ -9921,7 +9911,7 @@ namespace {
          */
         public static function enableForeignKeyConstraints(){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::enableForeignKeyConstraints();
+            return \Illuminate\Database\Schema\MySqlBuilder::enableForeignKeyConstraints();
         }
         
         /**
@@ -9932,7 +9922,7 @@ namespace {
          */
         public static function disableForeignKeyConstraints(){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::disableForeignKeyConstraints();
+            return \Illuminate\Database\Schema\MySqlBuilder::disableForeignKeyConstraints();
         }
         
         /**
@@ -9943,7 +9933,7 @@ namespace {
          */
         public static function getConnection(){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::getConnection();
+            return \Illuminate\Database\Schema\MySqlBuilder::getConnection();
         }
         
         /**
@@ -9955,7 +9945,7 @@ namespace {
          */
         public static function setConnection($connection){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            return \Jenssegers\Mongodb\Schema\Builder::setConnection($connection);
+            return \Illuminate\Database\Schema\MySqlBuilder::setConnection($connection);
         }
         
         /**
@@ -9967,7 +9957,7 @@ namespace {
          */
         public static function blueprintResolver($resolver){
             //Method inherited from \Illuminate\Database\Schema\Builder            
-            \Jenssegers\Mongodb\Schema\Builder::blueprintResolver($resolver);
+            \Illuminate\Database\Schema\MySqlBuilder::blueprintResolver($resolver);
         }
         
     }
@@ -10264,6 +10254,18 @@ namespace {
         }
         
         /**
+         * Get an item from the session, or store the default value.
+         *
+         * @param string $key
+         * @param \Closure $callback
+         * @return mixed 
+         * @static 
+         */
+        public static function remember($key, $callback){
+            return \Illuminate\Session\Store::remember($key, $callback);
+        }
+        
+        /**
          * Push a value onto a session array.
          *
          * @param string $key
@@ -10312,8 +10314,7 @@ namespace {
         }
         
         /**
-         * Flash a key / value pair to the session
-         * for immediate use.
+         * Flash a key / value pair to the session for immediate use.
          *
          * @param string $key
          * @param mixed $value
@@ -13503,6 +13504,1060 @@ namespace {
 
 
     class Moloquent extends \Jenssegers\Mongodb\Eloquent\Model{
+        
+    }
+
+
+    class Form extends \Collective\Html\FormFacade{
+        
+        /**
+         * Open up a new HTML form.
+         *
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function open($options = array()){
+            return \Collective\Html\FormBuilder::open($options);
+        }
+        
+        /**
+         * Create a new model based form builder.
+         *
+         * @param mixed $model
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function model($model, $options = array()){
+            return \Collective\Html\FormBuilder::model($model, $options);
+        }
+        
+        /**
+         * Set the model instance on the form builder.
+         *
+         * @param mixed $model
+         * @return void 
+         * @static 
+         */
+        public static function setModel($model){
+            \Collective\Html\FormBuilder::setModel($model);
+        }
+        
+        /**
+         * Close the current form.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function close(){
+            return \Collective\Html\FormBuilder::close();
+        }
+        
+        /**
+         * Generate a hidden field with the current CSRF token.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function token(){
+            return \Collective\Html\FormBuilder::token();
+        }
+        
+        /**
+         * Create a form label element.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @param bool $escape_html
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function label($name, $value = null, $options = array(), $escape_html = true){
+            return \Collective\Html\FormBuilder::label($name, $value, $options, $escape_html);
+        }
+        
+        /**
+         * Create a form input field.
+         *
+         * @param string $type
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function input($type, $name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::input($type, $name, $value, $options);
+        }
+        
+        /**
+         * Create a text input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function text($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::text($name, $value, $options);
+        }
+        
+        /**
+         * Create a password input field.
+         *
+         * @param string $name
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function password($name, $options = array()){
+            return \Collective\Html\FormBuilder::password($name, $options);
+        }
+        
+        /**
+         * Create a hidden input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function hidden($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::hidden($name, $value, $options);
+        }
+        
+        /**
+         * Create an e-mail input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function email($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::email($name, $value, $options);
+        }
+        
+        /**
+         * Create a tel input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function tel($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::tel($name, $value, $options);
+        }
+        
+        /**
+         * Create a number input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function number($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::number($name, $value, $options);
+        }
+        
+        /**
+         * Create a date input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function date($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::date($name, $value, $options);
+        }
+        
+        /**
+         * Create a datetime input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function datetime($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::datetime($name, $value, $options);
+        }
+        
+        /**
+         * Create a datetime-local input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function datetimeLocal($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::datetimeLocal($name, $value, $options);
+        }
+        
+        /**
+         * Create a time input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function time($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::time($name, $value, $options);
+        }
+        
+        /**
+         * Create a url input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function url($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::url($name, $value, $options);
+        }
+        
+        /**
+         * Create a file input field.
+         *
+         * @param string $name
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function file($name, $options = array()){
+            return \Collective\Html\FormBuilder::file($name, $options);
+        }
+        
+        /**
+         * Create a textarea input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function textarea($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::textarea($name, $value, $options);
+        }
+        
+        /**
+         * Create a select box field.
+         *
+         * @param string $name
+         * @param array $list
+         * @param string $selected
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function select($name, $list = array(), $selected = null, $options = array()){
+            return \Collective\Html\FormBuilder::select($name, $list, $selected, $options);
+        }
+        
+        /**
+         * Create a select range field.
+         *
+         * @param string $name
+         * @param string $begin
+         * @param string $end
+         * @param string $selected
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function selectRange($name, $begin, $end, $selected = null, $options = array()){
+            return \Collective\Html\FormBuilder::selectRange($name, $begin, $end, $selected, $options);
+        }
+        
+        /**
+         * Create a select year field.
+         *
+         * @param string $name
+         * @param string $begin
+         * @param string $end
+         * @param string $selected
+         * @param array $options
+         * @return mixed 
+         * @static 
+         */
+        public static function selectYear(){
+            return \Collective\Html\FormBuilder::selectYear();
+        }
+        
+        /**
+         * Create a select month field.
+         *
+         * @param string $name
+         * @param string $selected
+         * @param array $options
+         * @param string $format
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function selectMonth($name, $selected = null, $options = array(), $format = '%B'){
+            return \Collective\Html\FormBuilder::selectMonth($name, $selected, $options, $format);
+        }
+        
+        /**
+         * Get the select option for the given value.
+         *
+         * @param string $display
+         * @param string $value
+         * @param string $selected
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function getSelectOption($display, $value, $selected){
+            return \Collective\Html\FormBuilder::getSelectOption($display, $value, $selected);
+        }
+        
+        /**
+         * Create a checkbox input field.
+         *
+         * @param string $name
+         * @param mixed $value
+         * @param bool $checked
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function checkbox($name, $value = 1, $checked = null, $options = array()){
+            return \Collective\Html\FormBuilder::checkbox($name, $value, $checked, $options);
+        }
+        
+        /**
+         * Create a radio button input field.
+         *
+         * @param string $name
+         * @param mixed $value
+         * @param bool $checked
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function radio($name, $value = null, $checked = null, $options = array()){
+            return \Collective\Html\FormBuilder::radio($name, $value, $checked, $options);
+        }
+        
+        /**
+         * Create a HTML reset input element.
+         *
+         * @param string $value
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function reset($value, $attributes = array()){
+            return \Collective\Html\FormBuilder::reset($value, $attributes);
+        }
+        
+        /**
+         * Create a HTML image input element.
+         *
+         * @param string $url
+         * @param string $name
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function image($url, $name = null, $attributes = array()){
+            return \Collective\Html\FormBuilder::image($url, $name, $attributes);
+        }
+        
+        /**
+         * Create a color input field.
+         *
+         * @param string $name
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function color($name, $value = null, $options = array()){
+            return \Collective\Html\FormBuilder::color($name, $value, $options);
+        }
+        
+        /**
+         * Create a submit button element.
+         *
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function submit($value = null, $options = array()){
+            return \Collective\Html\FormBuilder::submit($value, $options);
+        }
+        
+        /**
+         * Create a button element.
+         *
+         * @param string $value
+         * @param array $options
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function button($value = null, $options = array()){
+            return \Collective\Html\FormBuilder::button($value, $options);
+        }
+        
+        /**
+         * Get the ID attribute for a field name.
+         *
+         * @param string $name
+         * @param array $attributes
+         * @return string 
+         * @static 
+         */
+        public static function getIdAttribute($name, $attributes){
+            return \Collective\Html\FormBuilder::getIdAttribute($name, $attributes);
+        }
+        
+        /**
+         * Get the value that should be assigned to the field.
+         *
+         * @param string $name
+         * @param string $value
+         * @return mixed 
+         * @static 
+         */
+        public static function getValueAttribute($name, $value = null){
+            return \Collective\Html\FormBuilder::getValueAttribute($name, $value);
+        }
+        
+        /**
+         * Get a value from the session's old input.
+         *
+         * @param string $name
+         * @return mixed 
+         * @static 
+         */
+        public static function old($name){
+            return \Collective\Html\FormBuilder::old($name);
+        }
+        
+        /**
+         * Determine if the old input is empty.
+         *
+         * @return bool 
+         * @static 
+         */
+        public static function oldInputIsEmpty(){
+            return \Collective\Html\FormBuilder::oldInputIsEmpty();
+        }
+        
+        /**
+         * Get the session store implementation.
+         *
+         * @return \Illuminate\Session\SessionInterface $session
+         * @static 
+         */
+        public static function getSessionStore(){
+            return \Collective\Html\FormBuilder::getSessionStore();
+        }
+        
+        /**
+         * Set the session store implementation.
+         *
+         * @param \Illuminate\Session\SessionInterface $session
+         * @return $this 
+         * @static 
+         */
+        public static function setSessionStore($session){
+            return \Collective\Html\FormBuilder::setSessionStore($session);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Collective\Html\FormBuilder::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Collective\Html\FormBuilder::hasMacro($name);
+        }
+        
+        /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */
+        public static function macroCall($method, $parameters){
+            return \Collective\Html\FormBuilder::macroCall($method, $parameters);
+        }
+        
+        /**
+         * Register a custom component.
+         *
+         * @param $name
+         * @param $view
+         * @param array $signature
+         * @return void 
+         * @static 
+         */
+        public static function component($name, $view, $signature){
+            \Collective\Html\FormBuilder::component($name, $view, $signature);
+        }
+        
+        /**
+         * Check if a component is registered.
+         *
+         * @param $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasComponent($name){
+            return \Collective\Html\FormBuilder::hasComponent($name);
+        }
+        
+        /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return \Illuminate\Contracts\View\View|mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */
+        public static function componentCall($method, $parameters){
+            return \Collective\Html\FormBuilder::componentCall($method, $parameters);
+        }
+        
+    }
+
+
+    class Html extends \Collective\Html\HtmlFacade{
+        
+        /**
+         * Convert an HTML string to entities.
+         *
+         * @param string $value
+         * @return string 
+         * @static 
+         */
+        public static function entities($value){
+            return \Collective\Html\HtmlBuilder::entities($value);
+        }
+        
+        /**
+         * Convert entities to HTML characters.
+         *
+         * @param string $value
+         * @return string 
+         * @static 
+         */
+        public static function decode($value){
+            return \Collective\Html\HtmlBuilder::decode($value);
+        }
+        
+        /**
+         * Generate a link to a JavaScript file.
+         *
+         * @param string $url
+         * @param array $attributes
+         * @param bool $secure
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function script($url, $attributes = array(), $secure = null){
+            return \Collective\Html\HtmlBuilder::script($url, $attributes, $secure);
+        }
+        
+        /**
+         * Generate a link to a CSS file.
+         *
+         * @param string $url
+         * @param array $attributes
+         * @param bool $secure
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function style($url, $attributes = array(), $secure = null){
+            return \Collective\Html\HtmlBuilder::style($url, $attributes, $secure);
+        }
+        
+        /**
+         * Generate an HTML image element.
+         *
+         * @param string $url
+         * @param string $alt
+         * @param array $attributes
+         * @param bool $secure
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function image($url, $alt = null, $attributes = array(), $secure = null){
+            return \Collective\Html\HtmlBuilder::image($url, $alt, $attributes, $secure);
+        }
+        
+        /**
+         * Generate a link to a Favicon file.
+         *
+         * @param string $url
+         * @param array $attributes
+         * @param bool $secure
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function favicon($url, $attributes = array(), $secure = null){
+            return \Collective\Html\HtmlBuilder::favicon($url, $attributes, $secure);
+        }
+        
+        /**
+         * Generate a HTML link.
+         *
+         * @param string $url
+         * @param string $title
+         * @param array $attributes
+         * @param bool $secure
+         * @param bool $escape
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function link($url, $title = null, $attributes = array(), $secure = null, $escape = true){
+            return \Collective\Html\HtmlBuilder::link($url, $title, $attributes, $secure, $escape);
+        }
+        
+        /**
+         * Generate a HTTPS HTML link.
+         *
+         * @param string $url
+         * @param string $title
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function secureLink($url, $title = null, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::secureLink($url, $title, $attributes);
+        }
+        
+        /**
+         * Generate a HTML link to an asset.
+         *
+         * @param string $url
+         * @param string $title
+         * @param array $attributes
+         * @param bool $secure
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function linkAsset($url, $title = null, $attributes = array(), $secure = null){
+            return \Collective\Html\HtmlBuilder::linkAsset($url, $title, $attributes, $secure);
+        }
+        
+        /**
+         * Generate a HTTPS HTML link to an asset.
+         *
+         * @param string $url
+         * @param string $title
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function linkSecureAsset($url, $title = null, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::linkSecureAsset($url, $title, $attributes);
+        }
+        
+        /**
+         * Generate a HTML link to a named route.
+         *
+         * @param string $name
+         * @param string $title
+         * @param array $parameters
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function linkRoute($name, $title = null, $parameters = array(), $attributes = array()){
+            return \Collective\Html\HtmlBuilder::linkRoute($name, $title, $parameters, $attributes);
+        }
+        
+        /**
+         * Generate a HTML link to a controller action.
+         *
+         * @param string $action
+         * @param string $title
+         * @param array $parameters
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function linkAction($action, $title = null, $parameters = array(), $attributes = array()){
+            return \Collective\Html\HtmlBuilder::linkAction($action, $title, $parameters, $attributes);
+        }
+        
+        /**
+         * Generate a HTML link to an email address.
+         *
+         * @param string $email
+         * @param string $title
+         * @param array $attributes
+         * @param bool $escape
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function mailto($email, $title = null, $attributes = array(), $escape = true){
+            return \Collective\Html\HtmlBuilder::mailto($email, $title, $attributes, $escape);
+        }
+        
+        /**
+         * Obfuscate an e-mail address to prevent spam-bots from sniffing it.
+         *
+         * @param string $email
+         * @return string 
+         * @static 
+         */
+        public static function email($email){
+            return \Collective\Html\HtmlBuilder::email($email);
+        }
+        
+        /**
+         * Generates non-breaking space entities based on number supplied.
+         *
+         * @param int $num
+         * @return string 
+         * @static 
+         */
+        public static function nbsp($num = 1){
+            return \Collective\Html\HtmlBuilder::nbsp($num);
+        }
+        
+        /**
+         * Generate an ordered list of items.
+         *
+         * @param array $list
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString|string 
+         * @static 
+         */
+        public static function ol($list, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::ol($list, $attributes);
+        }
+        
+        /**
+         * Generate an un-ordered list of items.
+         *
+         * @param array $list
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString|string 
+         * @static 
+         */
+        public static function ul($list, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::ul($list, $attributes);
+        }
+        
+        /**
+         * Generate a description list of items.
+         *
+         * @param array $list
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function dl($list, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::dl($list, $attributes);
+        }
+        
+        /**
+         * Build an HTML attribute string from an array.
+         *
+         * @param array $attributes
+         * @return string 
+         * @static 
+         */
+        public static function attributes($attributes){
+            return \Collective\Html\HtmlBuilder::attributes($attributes);
+        }
+        
+        /**
+         * Obfuscate a string to prevent spam-bots from sniffing it.
+         *
+         * @param string $value
+         * @return string 
+         * @static 
+         */
+        public static function obfuscate($value){
+            return \Collective\Html\HtmlBuilder::obfuscate($value);
+        }
+        
+        /**
+         * Generate a meta tag.
+         *
+         * @param string $name
+         * @param string $content
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function meta($name, $content, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::meta($name, $content, $attributes);
+        }
+        
+        /**
+         * Generate an html tag.
+         *
+         * @param string $tag
+         * @param mixed $content
+         * @param array $attributes
+         * @return \Illuminate\Support\HtmlString 
+         * @static 
+         */
+        public static function tag($tag, $content, $attributes = array()){
+            return \Collective\Html\HtmlBuilder::tag($tag, $content, $attributes);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param callable $macro
+         * @return void 
+         * @static 
+         */
+        public static function macro($name, $macro){
+            \Collective\Html\HtmlBuilder::macro($name, $macro);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasMacro($name){
+            return \Collective\Html\HtmlBuilder::hasMacro($name);
+        }
+        
+        /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */
+        public static function macroCall($method, $parameters){
+            return \Collective\Html\HtmlBuilder::macroCall($method, $parameters);
+        }
+        
+        /**
+         * Register a custom component.
+         *
+         * @param $name
+         * @param $view
+         * @param array $signature
+         * @return void 
+         * @static 
+         */
+        public static function component($name, $view, $signature){
+            \Collective\Html\HtmlBuilder::component($name, $view, $signature);
+        }
+        
+        /**
+         * Check if a component is registered.
+         *
+         * @param $name
+         * @return bool 
+         * @static 
+         */
+        public static function hasComponent($name){
+            return \Collective\Html\HtmlBuilder::hasComponent($name);
+        }
+        
+        /**
+         * Dynamically handle calls to the class.
+         *
+         * @param string $method
+         * @param array $parameters
+         * @return \Illuminate\Contracts\View\View|mixed 
+         * @throws \BadMethodCallException
+         * @static 
+         */
+        public static function componentCall($method, $parameters){
+            return \Collective\Html\HtmlBuilder::componentCall($method, $parameters);
+        }
+        
+    }
+
+
+    class Alert extends \UxWeb\SweetAlert\SweetAlert{
+        
+        /**
+         * Display an alert message with a text and an optional title.
+         * 
+         * By default the alert is not typed.
+         *
+         * @param string $text
+         * @param string $type
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function message($text, $title = '', $type = null){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::message($text, $title, $type);
+        }
+        
+        /**
+         * Display a not typed alert message with a text and a title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function basic($text, $title){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::basic($text, $title);
+        }
+        
+        /**
+         * Display an info typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function info($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::info($text, $title);
+        }
+        
+        /**
+         * Display a success typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function success($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::success($text, $title);
+        }
+        
+        /**
+         * Display an error typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function error($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::error($text, $title);
+        }
+        
+        /**
+         * Display a warning typed alert message with a text and an optional title.
+         *
+         * @param string $text
+         * @param string $title
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function warning($text, $title = ''){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::warning($text, $title);
+        }
+        
+        /**
+         * Set the duration for this alert until it autocloses.
+         *
+         * @param int $milliseconds
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function autoclose($milliseconds = null){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::autoclose($milliseconds);
+        }
+        
+        /**
+         * Add a confirmation button to the alert.
+         *
+         * @param string $buttonText
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function confirmButton($buttonText = 'OK'){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::confirmButton($buttonText);
+        }
+        
+        /**
+         * Make this alert persistent with a confirmation button.
+         *
+         * @param string $buttonText
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function persistent($buttonText = 'OK'){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::persistent($buttonText);
+        }
+        
+        /**
+         * Make Message HTML view.
+         *
+         * @param bool|true $html
+         * @return \UxWeb\SweetAlert\SweetAlertNotifier $this
+         * @static 
+         */
+        public static function html(){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::html();
+        }
+        
+        /**
+         * Return the current alert configuration.
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getConfig(){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::getConfig();
+        }
+        
+        /**
+         * Return the current alert configuration as Json.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getJsonConfig(){
+            return \UxWeb\SweetAlert\SweetAlertNotifier::getJsonConfig();
+        }
         
     }
 

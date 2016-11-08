@@ -8,10 +8,10 @@
             </div>
             <div class="content">
                 <div class="author">
-                    <img class="avatar border-white" src="{{asset('assets/img/cagub/agus.jpg')}}" alt="..."/>
-                    <h4 class="title">Agus Yudhoyono<br/>
+                    <img class="avatar border-white" src="{{asset('assets/img/cagub/ahok.jpg')}}" alt="..."/>
+                    <h4 class="title">Basuki Cahya Purnama<br/>
                         <a href="#">
-                            <small>@AgusYudhoyono</small>
+                            <small>@ahok_btp</small>
                         </a>
                     </h4>
                 </div>
@@ -118,21 +118,21 @@
                 <h4 class="title">Profile Basuki Cahya Purnama</h4>
             </div>
             <div class="content">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group">
-                            <label>About Me</label>
-                            <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label>About Me</label>
+                                <textarea rows="5" class="form-control border-input" placeholder="Here can be your description" value="Mike">Oh so, your weak rhyme
 You doubt I'll bother, reading into it
 I'll probably won't, left to my own devices
 But that's the difference in our opinions.</textarea>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="text-center">
-                    <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
-                </div>
-                <div class="clearfix"></div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-info btn-fill btn-wd">Update Profile</button>
+                    </div>
+                    <div class="clearfix"></div>
 
             </div>
         </div>

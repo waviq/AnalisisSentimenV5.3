@@ -21,6 +21,7 @@
     <!--  Paper Dashboard core CSS    -->
     <link href="{{asset('assets/css/paper-dashboard.css')}}" rel="stylesheet"/>
 
+    <link href="{{asset('assets/css/sweetalert.css')}}" rel="stylesheet"/>
     <!--  CSS for Demo Purpose, don't include it in your project     -->
     <link href="{{asset('assets/css/demo.css')}}" rel="stylesheet"/>
     <link href="{{asset('css/custom.css')}}" rel="stylesheet"/>
@@ -43,35 +44,41 @@
 
         <div class="sidebar-wrapper">
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
+                <a href="#" class="simple-text">
                     Analis Sentiment
                 </a>
             </div>
 
             <ul class="nav">
-                <li class="active">
+                <li>
                     <a href="{{url(action('HomeController@index'))}}">
-                        <i class="ti-panel"></i>
-                        <p>Dashboard</p>
+                        <i class="fa fa-home"></i>
+                        <p>Home</p>
                     </a>
                 </li>
                 <li>
                     <a href="{{url(action('HomeController@preprocessing'))}}">
-                        <i class="ti-user"></i>
+                        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
                         <p>Preprocessing</p>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
-                        <i class="ti-view-list-alt"></i>
+                    <a href="{{url(action('ClassificationController@index'))}}">
+                        <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
                         <p>Classification</p>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{{url(action('WordSentimentController@index'))}}">
                         <i class="ti-text"></i>
-                        <p>Typography</p>
+                        <p>Daftar Kata</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{url(action('TesterController@index'))}}">
+                        <i class="fa fa-check"></i>
+                        <p>Tester</p>
                     </a>
                 </li>
 
@@ -89,7 +96,7 @@
                         <span class="icon-bar bar2"></span>
                         <span class="icon-bar bar3"></span>
                     </button>
-                    <a class="navbar-brand" href="#">Analisist Sentimen Media Sosial</a>
+                    @yield('title')
                 </div>
                 @yield('procces')
             </div>
@@ -113,8 +120,6 @@
 
 </div>
 
-
-
 </body>
 
 <!--   Core JS Files   -->
@@ -129,9 +134,10 @@
 
 <!--  Notifications Plugin    -->
 <script src="{{asset('assets/js/bootstrap-notify.js')}}"></script>
-
+<script src="{{asset('assets/js/sweetalert.min.js')}}"></script>
+@include('sweet::alert')
 <!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+{{--<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>--}}
 
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 <script src="{{asset('assets/js/paper-dashboard.js')}}"></script>
