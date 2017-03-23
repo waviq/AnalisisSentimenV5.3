@@ -36,4 +36,36 @@
             </a>
         </div>
     </div>
+
+    <div class="col-lg-3">
+        <div class="contact-box center-version">
+
+            <a href="{{url(action('WordSentimentController@getWordIntegririty'))}}">
+                <img alt="image" class="img-circle" src="{{asset('assets/img/integrity.png')}}">
+
+                <h3 class="m-b-xs"><strong>Integrity Words</strong></h3>
+                <address class="m-t-md">
+                    <strong>Data dikumpulkan dari</strong><br>
+                    Hasil translate berbagai macam sumber paper<br>
+                    Hasil data training<br>
+                </address>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-lg-3">
+        <div class="contact-box center-version">
+
+            <a href="{{url(action('WordSentimentController@getWordCapability'))}}">
+                <img alt="image" class="img-circle" src="{{asset('assets/img/Capability2.png')}}">
+
+                <h3 class="m-b-xs"><strong>Capability Words</strong></h3>
+                <address class="m-t-md">
+                    <strong>Data dikumpulkan dari</strong><br>
+                    Hasil translate berbagai macam sumber paper<br>
+                    Hasil data training<br>
+                </address>
+            </a>
+        </div>
+    </div>
 @endsection

@@ -3,7 +3,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2016-11-03.
+    * Generated on 2017-01-15.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -127,6 +127,7 @@ namespace PHPSTORM_META {
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'aws' instanceof \Aws\Sdk,
         ],
         \Illuminate\Contracts\Container\Container::make('') => [
             '' == '@',
@@ -246,6 +247,7 @@ namespace PHPSTORM_META {
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'aws' instanceof \Aws\Sdk,
         ],
         \App::make('') => [
             '' == '@',
@@ -365,6 +367,7 @@ namespace PHPSTORM_META {
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'aws' instanceof \Aws\Sdk,
         ],
         \app('') => [
             '' == '@',
@@ -484,6 +487,7 @@ namespace PHPSTORM_META {
             'command.ide-helper.meta' instanceof \Barryvdh\LaravelIdeHelper\Console\MetaCommand,
             'html' instanceof \Collective\Html\HtmlBuilder,
             'form' instanceof \Collective\Html\FormBuilder,
+            'aws' instanceof \Aws\Sdk,
         ],
     ];
 }

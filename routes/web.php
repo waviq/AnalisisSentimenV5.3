@@ -23,9 +23,6 @@ Route::get('testGet', function(){
     return view('test.test');
 });
 
-Route::get('sentimen', function (){
-     return view('sentimen.test');
-});
 Route::post('sentimen', function (){
     $input = \Illuminate\Support\Facades\Input::get('text');
 
@@ -73,25 +70,33 @@ Route::get('agus','AgusController@index');
 Route::get('anis','AnisController@index');
 
 Route::get('preprocessing','HomeController@preprocessing');
+
 Route::get('classification','ClassificationController@index');
+Route::get('classification/sentiment','ClassificationController@indexSentimen');
+Route::get('classification/integrity','IntegritasController@indexIntegritas');
 
-Route::get('classification/sentiment/ahok','ClassificationController@getSentimentAhok');
-Route::get('classification/sentiment/ahok/post','ClassificationController@postAhokSentiment');
+Route::get('classification/sentiment/ahok','SentimenController@getSentimentAhok');
+Route::get('classification/sentiment/ahok/post','SentimenController@postAhokSentiment');
 
-Route::get('classification/sentiment/agus','ClassificationController@getSentimentAgus');
-Route::get('classification/sentiment/agus/post','ClassificationController@postAgusSentiment');
+Route::get('classification/sentiment/agus','SentimenController@getSentimentAgus');
+Route::get('classification/sentiment/agus/post','SentimenController@postAgusSentiment');
 
 Route::get('classification/sentiment/anis','ClassificationController@getSentimentAnis');
 Route::get('classification/sentiment/anis/post','ClassificationController@postAnisSentiment');
+
+Route::get('classification/integrity/agus','IntegritasController@getIntegritasAgus');
+Route::get('classification/integrity/agus/post','IntegritasController@postAgus');
+
+Route::get('classification/integrity/ahok','IntegritasController@getIntegritasAhok');
+Route::get('classification/integrity/ahok/post','IntegritasController@postAhok');
+
+Route::get('classification/integrity/anis','IntegritasController@getIntegritasAnis');
+Route::get('classification/integrity/anis/post','IntegritasController@postAnis');
 
 Route::get('tester','TesterController@index');
 Route::post('tester/normalisasi','TesterController@normalisasi');
 Route::post('tester/stemming','TesterController@stemming');
 Route::post('tester/sentiment','TesterController@sentimen');
-
-
-
-
 
 
 Route::get('preprocessing/ahok/data', 'AhokController@data');
@@ -136,6 +141,16 @@ Route::get('word/negatif','WordSentimentController@getWordNegatif');
 Route::post('word/negatif/word','WordSentimentController@postWordNegatif');
 Route::delete('word/negatif/{id}','WordSentimentController@hapusNegatif');
 Route::post('word/negatif','WordSentimentController@searchNegatif');
+
+Route::get('word/integrity','WordSentimentController@getWordIntegririty');
+Route::post('word/integrity/word','WordSentimentController@postWordIntegrity');
+Route::delete('word/integrity/{id}','WordSentimentController@hapusIntegrity');
+Route::post('word/integrity','WordSentimentController@searchIntegrity');
+
+Route::get('word/capability','WordSentimentController@getWordCapability');
+Route::post('word/capability/word','WordSentimentController@postWordCapability');
+Route::delete('word/capability/{id}','WordSentimentController@hapusCapability');
+Route::post('word/capability','WordSentimentController@searchCapability');
 
 Route::get('word','WordSentimentController@index');
 Route::get('/twitter', function () {
